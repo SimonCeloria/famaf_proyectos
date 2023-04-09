@@ -8,17 +8,18 @@
 #include "fixstring.h"
 
 void swap(fixstring a[], unsigned int i, unsigned int j) {
-    /*
-     * COMPLETAR
-     *
-     */
+    int aux;
+    aux = a[i];
+    a[i]= a[j];
+    a[j] = a[aux];
 }
 
 bool goes_before(fixstring x, fixstring y) {
-    /*
-     * COMPLETAR
-     *
-     */
+    
+    if(fstring_less_eq(x,y)) {
+        return true;
+    }
+
     return false;
 }
 
