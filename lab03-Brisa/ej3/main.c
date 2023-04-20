@@ -12,8 +12,28 @@ static void dump(char a[], unsigned int length) {
     printf("\n\n");
 }
 
-int main(/* -- completar-- */) {
-    FILE *file;
+unsigned int data_from_file(const char *path, unsigned int indexes[], char letters[], unsigned int max_size){
+    unsigned int size = 0u, i = 0u, index;
+
+    FILE *file_reader;
+    file_reader = fopen(path,"r");
+    
+    while(!feof(file_reader) && i < MAX_SIZE){
+        fscanf(file_reader, "%u -> *%c*\n", &index, &letters[i]);
+        if(i >= max_size){
+            printf("El archivo excede el maximo de elementos permitidos: %d\n", MAX_SIZE);
+            exit(EXIT_FAILURE);
+        }
+        indexes[i] = index;
+        i++;
+    }
+    size = i;
+    fclose(file_reader);
+    return size;
+}
+
+int main(int argc, char *argv[]) {
+    char *file;
     unsigned int indexes[MAX_SIZE];
     char letters[MAX_SIZE];
     char sorted[MAX_SIZE];
@@ -22,6 +42,17 @@ int main(/* -- completar-- */) {
     //  :
     // Debe guardarse aqui la cantidad de elementos leidos del archivo
     
+    if (argc == 1){
+        printf("Se espera un archivo como arguemento\n");
+        exit(EXIT_FAILURE);
+    }
+    //Chequeamos que se nos haya mandado un archivo.
+    file = argv[1];
+    length = data_from_file(file,indexes,letters,MAX_SIZE);
+    
+    for(unsigned int i = 0u; i < length; i++) {
+        sorted[indexes[i]] = letters[i];
+    }
     /* -- completar -- */
 
     dump(sorted, length);
