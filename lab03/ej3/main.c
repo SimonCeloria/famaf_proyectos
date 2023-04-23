@@ -14,8 +14,8 @@ static void dump(char a[], unsigned int length) {
 
 unsigned int data_from_file(const char *path, unsigned int indexes[], char letters[], unsigned int max_size) {
     unsigned int r_files,i,index;
-    r_files = 0;
-    i = 0;
+    r_files = 0u;
+    i = 0u;
     FILE*archivo;    
 
     archivo = fopen(path,"r");
@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
 
     length = data_from_file(argv[1],indexes,letters,MAX_SIZE);
 
-    for(unsigned int i = 0u; i < length; i++) {
+    for(unsigned int i = 0u; i < length-1; i++) {
         sorted[indexes[i]] = letters[i];
     }
 
