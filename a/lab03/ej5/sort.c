@@ -13,7 +13,9 @@
 
 bool goes_before(player_t x, player_t y){
     // completar aquí
-    return true;
+    bool res;
+    res = x.rank <= y.rank;
+    return res;
 }
 
 bool array_is_sorted(player_t atp[], unsigned int length) {
@@ -24,7 +26,25 @@ bool array_is_sorted(player_t atp[], unsigned int length) {
     return (i == length);
 }
 
-void sort(player_t a[], unsigned int length) {
-    // completar aquí
+void swap (player_t a[], unsigned int i, unsigned int j){
+    player_t aux;
+    aux = a[i];
+    a[i] = a[j];
+    a[j] = aux;
 }
 
+static void insert(player_t a[], unsigned int i) {
+    unsigned int j = i;
+    while(j>0 && goes_before(a[j],a[j-1u])){
+        swap(a,j,j-1u);
+        j--;
+    }
+}
+
+void sort(player_t a[], unsigned int length) {
+    // completar aquí
+    for (unsigned int i = 1u; i < length; ++i) {
+        insert(a, i);        
+    }
+    assert(array_is_sorted(a,length));
+}

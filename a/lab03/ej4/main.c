@@ -10,6 +10,7 @@
 
 /* Then, this project's includes, alphabetically ordered */
 #include "array_helpers.h"
+#include "weather_utils.h"
 
 /**
  * @brief print usage help
@@ -50,6 +51,24 @@ char *parse_filepath(int argc, char *argv[]) {
     return (result);
 }
 
+static void dump_max(int a[],unsigned int length) {
+    printf("\"");
+    for (unsigned int j=0u; j < length; j++) {
+        printf("%i, ", a[j]);
+    }
+    printf("\"");
+    printf("\n\n");
+}
+
+static void dump_rain(unsigned int a[], unsigned int length) {
+    printf("\"");
+    for (unsigned int j=0u; j < length; j++) {
+        printf("%u, ", a[j]+1);
+    }
+    printf("\"");
+    printf("\n\n");
+}
+
 /**
  * @brief Main program function
  *
@@ -60,6 +79,9 @@ char *parse_filepath(int argc, char *argv[]) {
  */
 int main(int argc, char *argv[]) {
     char *filepath = NULL;
+    int min_temp_h;
+    unsigned int rainmonths[YEARS];
+    int maxtemp [YEARS];
 
     /* parse the filepath given in command line arguments */
     filepath = parse_filepath(argc, argv);
@@ -70,8 +92,21 @@ int main(int argc, char *argv[]) {
     /* parse the file to fill the array and obtain the actual length */
     array_from_file(array, filepath);
 
+    /*gets the min_temp*/
+    min_temp_h = min_temp(array);
+
+    /*gets the max_year_temp*/
+    max_year_temp(array,maxtemp);
+
+    /*gets max year rainfall per year*/
+    max_month_prec_per_year(array,rainmonths);
+
     /* show the ordered array in the screen */
-    array_dump(array);
+    printf("The minimum historical temperature is %i\n", min_temp_h);
+    printf("The maximum temperatures by year:\n");
+    dump_max(maxtemp, YEARS);
+    printf("The month with the maximum amounth of rains by year:\n");
+    dump_rain(rainmonths, YEARS);
 
     return (EXIT_SUCCESS);
 }
