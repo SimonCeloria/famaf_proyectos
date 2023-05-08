@@ -4,7 +4,9 @@
 #include <stdbool.h>
 
 /* counter as a pointer to structs to guarantee encapsulation */
-typedef Node * list ;
+typedef struct _node * list ;
+
+typedef struct _node _node;
 
 typedef int list_elem;
 
@@ -15,7 +17,7 @@ list empty_list(void);
     Being list the returned list, list_is_init(c) should be true.
 */
 
-list addl(list_elem e, list l);
+list addl(list l,list_elem e);
 /*
     Adds an elemt to the list.
 */
@@ -72,7 +74,7 @@ list drop(list l, int n);
     PRECONDITION: !is_empty(l)
 */
 
-list concat(list l1);
+list copy(list l1);
 /*
     Copy all the elements of the list.
 */
