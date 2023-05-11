@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 
-// Revisar memory leaks
+// Revisar memory leaks, ver valgrid, buscar algoritmo if para revisar si libere mi memoria. compilar usando -ggdb3 para revisar donde esta el error en valgrid
 
 #include "list.h"
 
