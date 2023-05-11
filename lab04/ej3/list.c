@@ -4,6 +4,8 @@
 #include <stdio.h>
 
 
+// Revisar memory leaks
+
 #include "list.h"
 
 typedef struct _node {
@@ -19,13 +21,14 @@ list empty_list(void){
 list addl(list l, list_elem e){
     Node_t *new_node;
     new_node = (Node_t *) malloc(sizeof(Node_t));
-    if (new_node == NULL) {
-        printf("Error: memory allocation failed\n");
-        exit(EXIT_FAILURE);
-    }
     new_node -> elem = e;
     new_node -> next = l;
     l = new_node;
+    if (new_node == NULL) {
+       skip;
+    } else {
+    free(new_node);
+    }
     return l;
 }
 
