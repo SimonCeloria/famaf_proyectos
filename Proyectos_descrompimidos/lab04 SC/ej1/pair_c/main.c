@@ -1,0 +1,23 @@
+#include <stdlib.h>  /* EXIT_SUCCESS... */
+#include <stdio.h>   /* printf()...     */
+#include "pair.h"    /* TAD Par         */
+
+
+
+int main(void) {
+    pair_t p, q;
+    // Nuevo par p
+    p = pair_new(3, 4);
+    // Se muestra el par por pantalla
+    printf("p = ");
+    show_pair(p);
+    // Nuevo para q con elementos de p intercambiados
+    q = pair_swapped(p);
+    // Se muestra q
+    printf("q = ");
+    show_pair(q);
+    // Se destruyen p y q
+    p = pair_destroy(p);
+    //q = pair_destroy(q); Cuando ejecuto el swapp asignando a q el swap de p, ambos punteros apuntan a la misma estructura. Entonces al liberar p libero q
+    return EXIT_SUCCESS;
+}
