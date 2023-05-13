@@ -24,11 +24,6 @@ list addl(list l, list_elem e){
     new_node -> elem = e;
     new_node -> next = l;
     l = new_node;
-    if (new_node == NULL) {
-       skip;
-    } else {
-    free(new_node);
-    }
     return l;
 }
 
