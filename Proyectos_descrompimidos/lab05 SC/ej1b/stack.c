@@ -8,6 +8,7 @@
 typedef struct _s_stack {
   struct _s_stack * next;
   stack_elem elem;
+  int length;
 }Stack_;
 
 
@@ -18,7 +19,11 @@ typedef struct _s_stack {
  stack stack_push(stack s, stack_elem e){
     Stack_ *new_stack;
     new_stack = (Stack_ *) malloc(sizeof(Stack_));
+    if(s == NULL){
+      new_stack -> length = 0;
+    }
     new_stack -> elem = e;
+    new_stack -> length = new_stack -> length + 1;
     new_stack -> next = s;
     s = new_stack;
     return s;
@@ -29,6 +34,7 @@ typedef struct _s_stack {
     stack aux;
     aux = s;
     s = s->next;
+    s -> length = s -> length - 1;
     free(aux);
     return s;
  }
@@ -36,14 +42,8 @@ typedef struct _s_stack {
 
  unsigned int stack_size(stack s) {
   unsigned int n;
-  Stack_ *aux;
-  n = 0u;
-  aux = s;
-  while(aux != NULL){
-      n = n + 1;
-      aux = aux -> next;
-  }
-    return n;
+  n = s -> length;
+  return n;
 }
 
 stack_elem stack_top(stack s){
