@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
   //Relleno la pila a partir de los elementos del arreglo
   for (unsigned int i = 0u; i < length; i++)
   {
-    s = stack_push(s,array[i]);
+    s = stack_push(s,array[length - i - 1]);
   }
   
   //Extraigo los elementos de la pila y los guardo en un arreglo nuevo

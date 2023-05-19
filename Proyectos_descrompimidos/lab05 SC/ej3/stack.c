@@ -59,7 +59,7 @@ unsigned int stack_size(stack s) {
 stack_elem stack_top(stack s){
     assert(inv_repre(s));
     stack_elem e_pop;
-    e_pop = s -> elems[s->size];
+    e_pop = s -> elems[s->size - 1u];
     return e_pop;
 }
 
@@ -69,10 +69,18 @@ bool stack_is_empty (stack s){
 
 stack_elem *stack_to_array(stack s){
     assert(inv_repre(s));
-    stack_elem* array; 
-    array = s->elems;
+    stack_elem *s_array = calloc(stack_size(s), sizeof(stack_elem));
+    if (!stack_is_empty(s))
+    {
+        for (size_t i = stack_size(s); i >0; i--)
+        {
+        s_array[i-1] = s->elems[i-1];
+        }
+    }else{
+        s_array = NULL;
+    }
     assert(inv_repre(s));
-    return array;
+    return s_array;
 }
 
 stack stack_destroy (stack s){
