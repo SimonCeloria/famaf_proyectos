@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 #include "queue.h"
-
+//Valgrind chequear valgrind --leak-check=full ./solve-hanoi 10
 struct s_queue {
     unsigned int size;     // Tamaño de la pila
     struct s_node *first;  // Puntero al primer nodo
