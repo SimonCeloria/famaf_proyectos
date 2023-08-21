@@ -32,7 +32,7 @@ ip link show | grep ether
 
 #Creo los archivos
 
-for i in {1..9}; do echo > "fma_S01E0${i}_es.txt"; done | echo > "fma_S01E10_es.txt"
+for i in {1..9}; do echo > "fma_S01E0${i}_es.srt"; done | echo > "fma_S01E10_es.srt"
 #Los renombro
 
 for f in *_es*; do mv $f ${f%_es.srt}.srt; done
